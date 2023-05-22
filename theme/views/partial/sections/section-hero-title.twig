@@ -1,0 +1,30 @@
+<section class="bg-ivory">
+    <div class="container flex flex-col justify-center">
+        <div class="py-[50px] md:py-[100px] flex flex-col text-primary gap-8">
+            {% if hero_logo %}
+                <div class="flex flex-col md:flex-row justify-between gap-8">
+                    <div class="flex flex-col gap-8">
+                        {% if current_post.parent.link %}
+                            <span><a class="text-secondary mr-2"
+                                     href="{{ current_post.parent.link }}">{{ current_post.parent.title }}</a>/<a
+                                    class="font-bold ml-2"
+                                    href="{{ current_post.link }}">{{ current_post.title }}</a></span>
+
+                        {% endif %}
+                        <h1>{{ current_post.title }}</h1>
+                    </div>
+                    <img class="w-[150px] self-center" src="{{ hero_logo }}" alt="{{ hero_logo.title }}">
+                </div>
+            {% else %}
+                {% if current_post.parent.link %}
+                    <span><a class="text-secondary mr-2"
+                             href="{{ current_post.parent.link }}">{{ current_post.parent.title }}</a>/<a
+                            class="font-bold ml-2"
+                            href="{{ current_post.link }}">{{ current_post.title }}</a></span>
+                {% endif %}
+                <h1>{{ current_post.title }}</h1>
+            {% endif %}
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,18 @@
+<section class="section--spaced pt-10">
+    <div class="container">
+        <div class="flex justify-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto">
+
+                {% for item in items %}
+                    {% include '/blocks/block-feature-card/index.twig' with {
+                        'image': item.image,
+                        'heading': item.heading,
+                        'subtitle': item.subtitle,
+                        'cta': item.cta,
+                    } %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>

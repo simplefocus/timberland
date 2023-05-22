@@ -1,0 +1,14 @@
+<section class="section--extra-spaced">
+    <div class="container">
+        <div class="flex flex-col justify-center items-center max-w-[800px] mx-auto">
+            <p class="eyebrow text-blue mb-2">{{ eyebrow }}</p>
+            <h2 class="text-center">{{ heading }}</h2>
+            <hr class="h-px my-8 border-[2px] w-[50px] text-red">
+            <p class="text-center text-secondary font-serif text-xl md:text-[22px]">{{ subtitle }}</p>
+            {% if cta.url and cta.title %}
+                <a href="{{ cta.url }}" target="{{ cta.target }}"
+                   class="btn btn--cta btn-{{ cta_color ? cta_color : 'blue' }} mt-6 md:mt-8">{{ cta.title }}</a>
+            {% endif %}
+        </div>
+    </div>
+</section>

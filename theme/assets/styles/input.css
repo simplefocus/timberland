@@ -1,0 +1,15 @@
+input, textarea {
+  @apply border border-secondary placeholder:font-serif px-4 py-2
+}
+
+input.subscriber-email {
+  padding: 12px 18px 12px 18px;
+  line-height: 110%;
+  max-width: 308px;
+  @apply rounded-full;
+}
+
+input.subscriber-email::placeholder {
+  font-family: Gotham, sans-serif;
+  @apply text-primary;
+}

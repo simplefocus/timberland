@@ -1,0 +1,45 @@
+.btn {
+  text-transform: capitalize;
+  white-space: nowrap;
+  border-radius: 9999px;
+  color: white;
+}
+
+.btn:hover {
+  filter: brightness(90%);
+}
+
+.btn.btn--primary {
+  composes: btn;
+  padding: 10px 20px 11px;
+}
+
+.btn.btn--cta {
+  padding: 12px 32px 14px 32px;
+}
+
+.btn.btn--subscribe {
+  max-width: 308px;
+  border-radius: 9999px;
+  line-height: 110%;
+  padding: 12px 18px 12px 18px;
+}
+
+.btn-red {
+  @apply bg-red
+}
+
+.btn-blue {
+  @apply bg-blue
+}
+
+/* Wordpress Block Button Overwrites */
+.wp-block-button {
+  margin-top: 2.25rem !important;
+}
+
+.wp-block-button__link {
+  color: #fff !important;
+  text-decoration: none !important;
+  @apply bg-blue;
+}

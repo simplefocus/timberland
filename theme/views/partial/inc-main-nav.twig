@@ -1,0 +1,38 @@
+<nav>
+    <div class="flex justify-end items-center bg-blue text-white h-[38px] px-10 gap-7 font-bold text-sm">
+        <a href="/sign-up">
+            Sign Up
+        </a>
+        <a href="/login">
+            Log In
+        </a>
+        <a>
+            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.08342 12.25C7.34069 12.2497 8.56174 11.8288 9.55212 11.0543L12.666 14.1681L13.6675 13.1665L10.5537 10.0527C11.3286 9.06222 11.7498 7.84089 11.7501 6.58329C11.7501 3.45883 9.20787 0.916626 6.08342 0.916626C2.95896 0.916626 0.416748 3.45883 0.416748 6.58329C0.416748 9.70775 2.95896 12.25 6.08342 12.25ZM6.08342 2.33329C8.42729 2.33329 10.3334 4.23942 10.3334 6.58329C10.3334 8.92717 8.42729 10.8333 6.08342 10.8333C3.73954 10.8333 1.83341 8.92717 1.83341 6.58329C1.83341 4.23942 3.73954 2.33329 6.08342 2.33329Z"
+                    fill="white"/>
+            </svg>
+        </a>
+    </div>
+    <ul class="nav-main flex justify-between items-center h-28 px-10">
+        <a href="/" class="w-36 h-full">
+            <img class="h-full w-full object-cover" src="{{theme.link}}/assets/images/logo.png" alt="logo">
+        </a>
+        <div class="flex gap-10">
+            {% for item in menu.items %}
+                <li class="nav-main-item {{ item.classes|join(' ') }}">
+                    <a class="nav-main-link font-bold" href="{{ item.link }}">{{ item.title }}</a>
+                    {% if item.children %}
+                        <ul class="nav-drop">
+                            {% for child in item.children %}
+                                <li class="nav-drop-item">
+                                    <a href="{{ child.link }}">{{ child.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </div>
+    </ul>
+</nav>

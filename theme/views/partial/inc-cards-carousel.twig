@@ -1,0 +1,148 @@
+{# Desktop Carousel #}
+<div class="hidden xl:flex min-h-[744px] bg-ivory p-3 relative">
+    <div class="w-96 mx-auto" style="scroll-snap-type: x mandatory;">
+        {% set items_per_page = 3 %}
+        {% set pages = (carousel_items|length/items_per_page)|round(1, 'ceil') %}
+        {% set current_page = 1 %}
+        {% for page in 0..pages %}
+            <div>
+                <input class="sr-only peer" type="radio" name="carousel-input" id="carousel-{{ loop.index }}" checked/>
+                <!-- content -->
+                <div
+                    class="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 opacity-0 peer-checked:opacity-100 peer-checked:z-10 z-0">
+                    <div class="grid grid-cols-3 gap-10">
+                        {% for item in carousel_items %}
+                            {% if loop.index > (current_page - 1) * items_per_page and loop.index < (current_page * items_per_page) + 1 %}
+                                <div class="p-[60px] bg-white text-center flex flex-col items-center shadow">
+                                    <h4>{{ item.carousel_item_title }}</h4>
+                                    <h5 class="uppercase text-blue mt-3">{{ item.carousel_item_subtitle }}</h5>
+                                    <hr class="h-px my-6 border-[2px] w-[50px] text-red">
+                                    <p class="text-secondary">{{ item.carousel_item_description }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- controls -->
+                    <div class="absolute top-1/2 w-full flex justify-between z-20">
+                        <label for="carousel-{{ loop.index - 1 }}"
+                               id="prev-button"
+                               class="inline-block cursor-pointer -translate-x-20 rounded-full active:translate-y-0.5">
+                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="17.5" cy="17.5" rx="17" ry="17.5" fill="#005480"/>
+                                <path
+                                    d="M20.5 25.5L13 18L20.5 10.5L21.8312 11.8313L15.6625 18L21.8312 24.1688L20.5 25.5Z"
+                                    fill="#F8F7F6"/>
+                            </svg>
+                        </label>
+                        <label for="carousel-{{ loop.index + 1 }}"
+                               id="next-button"
+                               class="inline-block text-yellow-600 {{ loop.index < pages ? 'cursor-pointer' : 'pointer-events-none' }} -translate-x-32 bg-white rounded-full shadow-md active:translate-y-0.5">
+                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="17.5" cy="17.5" rx="17" ry="17.5" fill="#005480"/>
+                                <path
+                                    d="M14.5 10.5L22 18L14.5 25.5L13.1688 24.1687L19.3375 18L13.1688 11.8312L14.5 10.5Z"
+                                    fill="#F8F7F6"/>
+                            </svg>
+                        </label>
+                    </div>
+
+                    <div id="carousel-bullets" class="absolute w-full flex justify-center gap-3 -translate-x-24 top-full mt-5">
+                        {% for bullets in 0..pages %}
+                            {% if loop.index == current_page %}
+                                <label for="carousel-{{ loop.index }}"
+                                       id="carousel-bullet-{{ loop.index }}"
+                                       class="inline-block w-3.5 h-3.5 cursor-pointer bg-blue rounded-full active:translate-y-0.5 ">
+                                </label>
+                            {% else %}
+                                <label for="carousel-{{ loop.index }}"
+                                       id="carousel-bullet-{{ loop.index }}"
+                                       class="inline-block w-3.5 h-3.5 cursor-pointer bg-card-stroke rounded-full active:translate-y-0.5 ">
+                                </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% set current_page = current_page + 1 %}
+        {% endfor %}
+    </div>
+</div>
+
+{# Mobile Carousel #}
+<div class="flex xl:hidden min-h-[510px] bg-ivory p-3 relative">
+    <div class="w-96 mx-auto" style="scroll-snap-type: x mandatory;">
+        {% set items_per_page = 1 %}
+        {% set pages = (carousel_items|length/items_per_page)|round(1, 'ceil') %}
+        {% set current_page = 1 %}
+        {% for page in 0..pages %}
+            <div class="relative flex justify-center items-center">
+                <input class="sr-only peer" type="radio" name="carousel-input" id="carousel-mobile-{{ loop.index }}"/>
+                <!-- content #1 -->
+                <div
+                    class="w-full px-[50px] absolute top-1/2 translate-y-[38px] flex justify-center items-center transition-all duration-300 opacity-0 peer-checked:opacity-100 peer-checked:z-10 z-0 peer-checked:active-bullet">
+                    <div>
+                        {% for item in carousel_items %}
+                            {% if loop.index > (current_page - 1) * items_per_page and loop.index < (current_page * items_per_page) + 1 %}
+                                <div
+                                    class="min-w-[287px] min-h-[372px] p-[32px] bg-white shadow text-center flex flex-col items-center justify-center">
+                                    <h4 class="text-[22px]">{{ item.carousel_item_title }}</h4>
+                                    <h5 class="uppercase text-blue text-base leading-[100%] mt-3">{{ item.carousel_item_subtitle }}</h5>
+                                    <hr class="h-px my-6 border-[2px] w-[50px] text-red">
+                                    <p class="text-secondary text-sm leading-[140%]">{{ item.carousel_item_description }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- controls -->
+                    <div class="absolute top-1/2 w-full flex justify-between z-20">
+                        <label for="carousel-mobile-{{ loop.index - 1 }}"
+                               id="prev-button-{{ loop.index - 1 }}"
+                               class="inline-block cursor-pointer md:-translate-x-[30px] rounded-full active:translate-y-0.5">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="11.5" cy="11" rx="10.5" ry="11" fill="#005480"/>
+                                <path
+                                    d="M14.3333 16.8327L8.5 10.9993L14.3333 5.16601L15.3688 6.20143L10.5708 10.9993L15.3688 15.7973L14.3333 16.8327Z"
+                                    fill="#F8F7F6"/>
+                            </svg>
+                        </label>
+                        <label for="carousel-mobile-{{ loop.index + 1 }}"
+                               id="next-button-{{ loop.index + 1 }}"
+                               class="inline-block text-yellow-600 {{ loop.index < pages ? 'cursor-pointer' : 'pointer-events-none' }} md:translate-x-[30px] bg-white rounded-full shadow-md active:translate-y-0.5">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="11.5" cy="11" rx="10.5" ry="11" fill="#005480"/>
+                                <path
+                                    d="M9.66667 5.16732L15.5 11.0007L9.66667 16.834L8.63125 15.7986L13.4292 11.0007L8.63125 6.20273L9.66667 5.16732Z"
+                                    fill="#F8F7F6"/>
+                            </svg>
+                        </label>
+                    </div>
+
+                    <div id="carousel-bullets" class="absolute w-full flex justify-center gap-3 top-full mt-6">
+                        {% for bullets in 0..pages - 1 %}
+                            {% if loop.index == current_page %}
+                                <label for="carousel-mobile-{{ loop.index }}"
+                                       id="carousel-mobile-bullet-{{ loop.index }}"
+                                       class="inline-block w-3.5 h-3.5 cursor-pointer bg-blue rounded-full active:translate-y-0.5 ">
+                                </label>
+                            {% else %}
+                                <label for="carousel-mobile-{{ loop.index }}"
+                                       id="carousel-mobile-bullet-{{ loop.index }}"
+                                       class="inline-block w-3.5 h-3.5 cursor-pointer bg-card-stroke rounded-full active:translate-y-0.5 ">
+                                </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% set current_page = current_page + 1 %}
+        {% endfor %}
+
+
+    </div>
+</div>

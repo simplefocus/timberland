@@ -1,0 +1,14 @@
+{% if video %}
+    <section class="section section--half-spaced bg-ivory">
+        <div class="container">
+            <div class="flex flex-col justify-center items-center">
+                <h3>Featured Video</h3>
+                <div id="featured-video-section" class="iframe-container">
+                    <iframe width="1280" height="720" src="{{ video }}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
