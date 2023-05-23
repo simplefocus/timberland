@@ -1,0 +1,106 @@
+/* Font Imports */
+
+/*@font-face {*/
+/*  font-family: Gotham;*/
+/*  src: url('/content/themes/cswa/theme/assets/fonts/Gotham-Medium.woff2') format('woff2');*/
+/*  font-style: normal;*/
+/*  font-weight: 500;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: Georgia;*/
+/*  src: url('/content/themes/cswa/theme/assets/fonts/Georgia.woff2') format('woff2'),*/
+/*  url('/content/themes/cswa/theme/assets/fonts/Georgia.woff') format('woff'),*/
+/*  url('/content/themes/cswa/theme/assets/fonts/Georgia.ttf') format('truetype');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: Georgia;*/
+/*  src: url('/content/themes/cswa/theme/assets/fonts/Georgia-Bold.woff2') format('woff2'),*/
+/*  url('/content/themes/cswa/theme/assets/fonts/Georgia-Bold.woff') format('woff'),*/
+/*  url('/content/themes/cswa/theme/assets/fonts/Georgia-Bold.ttf') format('truetype');*/
+/*  font-weight: bold;*/
+/*  font-style: normal;*/
+/*}*/
+
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-family: Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 150%;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+h5 {
+  line-height: 100%;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+}
+
+.eyebrow {
+  font-family: Gotham, sans-serif;
+  font-size: 1rem;
+  line-height: 100%;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+
+  @apply text-blue
+}
+
+.newsletter-heading {
+  line-height: 100%;
+}
+
+@screen md {
+  h1 {
+    font-size: 3.375rem;
+  }
+
+  h2 {
+    font-size: 2.625rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    line-height: 120%;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+
+  p, li {
+    font-size: 1.375rem;
+  }
+
+  .eyebrow {
+    font-size: 1.125rem;
+  }
+}

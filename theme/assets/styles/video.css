@@ -1,0 +1,34 @@
+#featured-video-section {
+  border: 0;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+#featured-video-section.iframe-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+#featured-video-section iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@screen md {
+  #featured-video-section {
+    margin-top: 50px;
+  }
+}

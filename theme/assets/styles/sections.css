@@ -1,0 +1,26 @@
+section.section--half-spaced {
+  padding: 25px 0;
+}
+
+section.section--spaced {
+  padding: 50px 0;
+}
+
+section.section--extra-spaced {
+  padding: 50px 0;
+}
+
+
+@screen md {
+  section.section--half-spaced {
+    padding: 50px 0;
+  }
+
+  section.section--spaced {
+    padding: 100px 0;
+  }
+
+  section.section--extra-spaced {
+    padding: 140px 0;
+  }
+}

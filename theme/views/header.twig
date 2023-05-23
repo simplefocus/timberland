@@ -1,0 +1,142 @@
+<nav>
+    <div class="hidden lg:flex justify-end items-center bg-blue text-white h-[38px] px-10 gap-7 font-bold text-sm">
+        <a href="/sign-up">
+            Sign Up
+        </a>
+        <a href="/login">
+            Log In
+        </a>
+        <form role="search" method="get" class="search-form -mr-4" action="{{ function('home_url') }}">
+            <label>
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M6.08342 12.25C7.34069 12.2497 8.56174 11.8288 9.55212 11.0543L12.666 14.1681L13.6675 13.1665L10.5537 10.0527C11.3286 9.06222 11.7498 7.84089 11.7501 6.58329C11.7501 3.45883 9.20787 0.916626 6.08342 0.916626C2.95896 0.916626 0.416748 3.45883 0.416748 6.58329C0.416748 9.70775 2.95896 12.25 6.08342 12.25ZM6.08342 2.33329C8.42729 2.33329 10.3334 4.23942 10.3334 6.58329C10.3334 8.92717 8.42729 10.8333 6.08342 10.8333C3.73954 10.8333 1.83341 8.92717 1.83341 6.58329C1.83341 4.23942 3.73954 2.33329 6.08342 2.33329Z"
+                        fill="white" />
+                </svg>
+                <input type="search" class="search-field" placeholder="Search" value="" name="s" title="Search for:" />
+            </label>
+            <input type="submit" class="search-submit" value="Search" />
+        </form>
+    </div>
+
+    {# Desktop Header #}
+    <div class="nav-main hidden lg:flex justify-between items-center h-28 lg:px-4 xl:px-10">
+        <a href="/" class="w-full max-w-[143px] h-full flex items-center">
+            {# Logo goes here. #}
+            {# <img class="w-full h-full max-h-[89px]" src="{{ theme.link }}/assets/images/logo.svg" alt="logo"> #}
+        </a>
+        <ul class="flex items-center justify-center h-full lg:gap-4 xl:gap-6">
+            {% for item in menu.items|sort((a,b) => a.menu_order > b.menu_order) %}
+                <li class="nav-main-item h-full px-2 {{ item.classes|join(' ') }}">
+                    <a class="peer h-full flex items-center nav-main-link font-bold border-b-3 border-white"
+                       href="{{ item.link }}">
+                    <span id="nav-item-parent-{{ loop.index }}"
+                          class="flex items-center justify-between gap-3 py-3 text-base xl:text-lg whitespace-nowrap border-b-3 border-white {{ current_post.title == item.title ? 'border-red' : 'hover:border-red hover:transition-all hover:duration-150' }}">
+                        {% if item.children %}
+                            {{ item.title }}
+                            <svg width="10" height="7" viewBox="0 0 10 7" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"><path
+                                    d="M10 1.5L5 6.5L5.96244e-08 1.5L0.8875 0.612501L5 4.725L9.1125 0.612501L10 1.5Z"
+                                    fill="#1D1D1D" />
+                            </svg>
+                        {% else %}
+                            {{ item.title }}
+                        {% endif %}
+                    </span>
+                    </a>
+                    {% if item.children %}
+                        <div
+                            class="absolute opacity-0 z-[-1] hover:z-10 peer-hover:z-10 peer-hover:opacity-100 hover:opacity-100 transition-all duration-150">
+                            <ul class="nav-drop">
+                                {% for child in item.children %}
+                                    <li class="nav-drop-item bg-white border-y border-card-stroke hover:brightness-95">
+                                        <a class="flex p-[25px] text-base xl:text-lg whitespace-nowrap"
+                                           href="{{ child.link }}">{{ child.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {# Mobile Header #}
+    <ul class="nav-main flex lg:hidden justify-between items-center h-[66px] px-6 bg-blue">
+        <a href="/" class="w-[28px] h-[42px]">
+            {# Mobile logo goes here. #}
+            {# <img class="h-full w-full object-cover" src="{{ theme.link }}/assets/images/logo-outline-min.svg" #}
+            {#      alt="logo"> #}
+        </a>
+        <div class="flex justify-center items-center gap-4">
+            <form role="search" method="get" class="search-form -mr-4" action="">
+                <label>
+                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.08342 12.25C7.34069 12.2497 8.56174 11.8288 9.55212 11.0543L12.666 14.1681L13.6675 13.1665L10.5537 10.0527C11.3286 9.06222 11.7498 7.84089 11.7501 6.58329C11.7501 3.45883 9.20787 0.916626 6.08342 0.916626C2.95896 0.916626 0.416748 3.45883 0.416748 6.58329C0.416748 9.70775 2.95896 12.25 6.08342 12.25ZM6.08342 2.33329C8.42729 2.33329 10.3334 4.23942 10.3334 6.58329C10.3334 8.92717 8.42729 10.8333 6.08342 10.8333C3.73954 10.8333 1.83341 8.92717 1.83341 6.58329C1.83341 4.23942 3.73954 2.33329 6.08342 2.33329Z"
+                            fill="white" />
+                    </svg>
+                    <input type="search" class="search-field" placeholder="Search" value="" name="s"
+                           title="Search for:" />
+                </label>
+                <input type="submit" class="search-submit" value="Search" />
+            </form>
+            <div id="mobile-nav-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div
+            class="mobile-nav-menu {{ function('is_user_logged_in') ? 'top-[112px] h-[calc(100vh-112px)]' : '' }} bg-white fixed">
+            <div class="mobile-nav-menu-list">
+                <ul class="flex flex-col items-start justify-start">
+                    {% for item in menu.items|sort((a,b) => a.menu_order > b.menu_order) %}
+                        <li class="nav-main-item w-full border-b border-card-stroke" {{ item.classes|join(' ') }}">
+                        <span class="flex w-full h-full items-center justify-between gap-3 py-5">
+                                {% if item.children %}
+                                    <a href="{{ item.link }}"
+                                       class="pr-6 h-full flex items-center nav-main-link font-bold">
+                                        {{ item.title }}
+                                    </a>
+                                    <span id="nav-item-parent-chevron-{{ loop.index }}"
+                                          class="nav-item-parent-chevron w-16 h-10 flex justify-end items-center flex-1 cursor-pointer">
+                                        <svg width="10" height="7" viewBox="0 0 10 7"
+                                             fill="none"
+                                             xmlns="http://www.w3.org/2000/svg"><path
+                                                d="M10 1.5L5 6.5L5.96244e-08 1.5L0.8875 0.612501L5 4.725L9.1125 0.612501L10 1.5Z"
+                                                fill="#1D1D1D" />
+                                        </svg>
+                                    </span>
+                                {% else %}
+                                    <a href="{{ item.link }}" id="nav-item-parent-{{ loop.index }}"
+                                       class="pr-6 h-full flex items-center nav-main-link font-bold py-[6.5px]">
+                                        {{ item.title }}
+                                    </a>
+                                {% endif %}
+                            </span>
+                        {% if item.children %}
+                            <div class="relative transition-all duration-150">
+                                <ul id="nav-child-list-{{ loop.index }}" class="mobile-nav-menu-child-list px-[25px]">
+                                    {% for child in item.children %}
+                                        <li>
+                                            <a class="text-base leading-4" href="{{ child.link }}">{{ child.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mobile-nav-menu-bottom">
+                <a class="hover:brightness-90" href="/">Sign Up</a>
+                <a class="hover:brightness-90" href="/">Log In</a>
+            </div>
+        </div>
+
+    </ul>
+</nav>
